@@ -120,7 +120,7 @@ export default function Home() {
 
         const githubRes =
           await axios.post(
-            "http://127.0.0.1:8000/api/github-analyze",
+            "process.env.NEXT_PUBLIC_API_URL/api/github-analyze",
             {
               repo_url:
                 repoUrl
@@ -161,7 +161,7 @@ export default function Home() {
 
         const analyzeRes =
           await axios.post(
-            "http://127.0.0.1:8000/api/analyze",
+            "process.env.NEXT_PUBLIC_API_URL/api/analyze",
             formData,
             {
               headers: {
@@ -226,27 +226,27 @@ export default function Home() {
       ] = await Promise.all([
 
         axios.post(
-          "http://127.0.0.1:8000/api/generate/dockerfile",
+          "process.env.NEXT_PUBLIC_API_URL/api/generate/dockerfile",
           requestBody
         ),
 
         axios.post(
-          "http://127.0.0.1:8000/api/generate/cicd",
+          "process.env.NEXT_PUBLIC_API_URL/api/generate/cicd",
           requestBody
         ),
 
         axios.post(
-          "http://127.0.0.1:8000/api/generate/kubernetes",
+          "process.env.NEXT_PUBLIC_API_URL/api/generate/kubernetes",
           requestBody
         ),
 
         axios.post(
-          "http://127.0.0.1:8000/api/generate/aws",
+          "process.env.NEXT_PUBLIC_API_URL/api/generate/aws",
           requestBody
         ),
 
         axios.post(
-          "http://127.0.0.1:8000/api/generate/linux",
+          "process.env.NEXT_PUBLIC_API_URL/api/generate/linux",
           requestBody
         ),
 
