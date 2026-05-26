@@ -1,7 +1,6 @@
 "use client";
 
 import axios from "axios";
-
 import { useState } from "react";
 
 import {
@@ -15,31 +14,18 @@ import {
   Download,
 } from "lucide-react";
 
-import toast, {
-  Toaster
-} from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 import Navbar from "@/components/layout/Navbar";
-
 import Sidebar from "@/components/layout/Sidebar";
-
 import FeatureCard from "@/components/cards/FeatureCard";
-
 import Tabs from "@/components/ui/Tabs";
-
 import CodeBlock from "@/components/ui/CodeBlock";
-
 import LoadingScreen from "@/components/ui/LoadingScreen";
-
 import ChatPanel from "@/components/ui/ChatPanel";
-
 import SuggestionPanel from "@/components/ui/SuggestionPanel";
-
-import TerminalLogs
-from "@/components/ui/TerminalLogs";
-
-import StackInfo
-from "@/components/ui/StackInfo";
+import TerminalLogs from "@/components/ui/TerminalLogs";
+import StackInfo from "@/components/ui/StackInfo";
 
 export default function Home() {
 
@@ -120,10 +106,9 @@ export default function Home() {
 
         const githubRes =
           await axios.post(
-            "process.env.NEXT_PUBLIC_API_URL/api/github-analyze",
+            `${process.env.NEXT_PUBLIC_API_URL}/api/github-analyze`,
             {
-              repo_url:
-                repoUrl
+              repo_url: repoUrl
             }
           );
 
@@ -161,7 +146,7 @@ export default function Home() {
 
         const analyzeRes =
           await axios.post(
-            "process.env.NEXT_PUBLIC_API_URL/api/analyze",
+            `${process.env.NEXT_PUBLIC_API_URL}/api/analyze`,
             formData,
             {
               headers: {
@@ -226,27 +211,27 @@ export default function Home() {
       ] = await Promise.all([
 
         axios.post(
-          "process.env.NEXT_PUBLIC_API_URL/api/generate/dockerfile",
+          `${process.env.NEXT_PUBLIC_API_URL}/api/generate/dockerfile`,
           requestBody
         ),
 
         axios.post(
-          "process.env.NEXT_PUBLIC_API_URL/api/generate/cicd",
+          `${process.env.NEXT_PUBLIC_API_URL}/api/generate/cicd`,
           requestBody
         ),
 
         axios.post(
-          "process.env.NEXT_PUBLIC_API_URL/api/generate/kubernetes",
+          `${process.env.NEXT_PUBLIC_API_URL}/api/generate/kubernetes`,
           requestBody
         ),
 
         axios.post(
-          "process.env.NEXT_PUBLIC_API_URL/api/generate/aws",
+          `${process.env.NEXT_PUBLIC_API_URL}/api/generate/aws`,
           requestBody
         ),
 
         axios.post(
-          "process.env.NEXT_PUBLIC_API_URL/api/generate/linux",
+          `${process.env.NEXT_PUBLIC_API_URL}/api/generate/linux`,
           requestBody
         ),
 
@@ -403,13 +388,7 @@ export default function Home() {
 
       <Toaster />
 
-      {
-
-        loading && <LoadingScreen />
-
-      }
-
-      {/* BACKGROUND */}
+      {loading && <LoadingScreen />}
 
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10 pointer-events-none" />
 
@@ -419,18 +398,12 @@ export default function Home() {
 
         <div className="grid xl:grid-cols-[220px_1fr_380px] gap-8">
 
-          {/* LEFT SIDEBAR */}
-
           <Sidebar
             history={history}
             setOutputs={setOutputs}
           />
 
-          {/* MAIN CONTENT */}
-
           <div>
-
-            {/* FEATURES */}
 
             <div className="grid md:grid-cols-4 gap-5 mb-10">
 
@@ -460,8 +433,6 @@ export default function Home() {
 
             </div>
 
-            {/* TERMINAL + STACK */}
-
             <div className="grid lg:grid-cols-2 gap-8 mb-10">
 
               <TerminalLogs logs={logs} />
@@ -469,8 +440,6 @@ export default function Home() {
               <StackInfo info={stackInfo} />
 
             </div>
-
-            {/* INPUT CARD */}
 
             <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 mb-10">
 
@@ -525,49 +494,13 @@ export default function Home() {
 
               </button>
 
-              {/* DEMO BUTTONS */}
-
-              <div className="flex flex-wrap gap-4 mt-6">
-
-                <button
-                  onClick={() =>
-                    setRepoUrl(
-                      "https://github.com/vercel/next.js"
-                    )
-                  }
-                  className="bg-black/60 border border-zinc-800 px-4 py-2 rounded-xl hover:border-cyan-400 transition"
-                >
-
-                  Try Next.js Demo
-
-                </button>
-
-                <button
-                  onClick={() =>
-                    setRepoUrl(
-                      "https://github.com/tiangolo/fastapi"
-                    )
-                  }
-                  className="bg-black/60 border border-zinc-800 px-4 py-2 rounded-xl hover:border-cyan-400 transition"
-                >
-
-                  Try FastAPI Demo
-
-                </button>
-
-              </div>
-
             </div>
-
-            {/* TABS */}
 
             <Tabs
               tabs={tabs}
               activeTab={activeTab}
               setActiveTab={setActiveTab}
             />
-
-            {/* OUTPUT */}
 
             {
 
@@ -649,8 +582,6 @@ export default function Home() {
             }
 
           </div>
-
-          {/* RIGHT AI PANEL */}
 
           <div className="space-y-6 sticky top-6 h-fit">
 
